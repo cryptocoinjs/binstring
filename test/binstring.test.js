@@ -3,33 +3,35 @@ var conv = require('../lib/binstring')
 require('terst')
 
 describe('+ convert(data)', function() {
-  it('should default output to byte array', function() {
-    EQ (conv('hello', { in:'binary' }).join(','), '104,101,108,108,111' );
+  it('should default output to buffer', function() {
+    var test = conv('hello', { in:'binary' });
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '68656c6c6f' );
   }),
   it('should duck-type a byte array', function() {
     var test = conv([104,101,108,108,111]);
-    T (Array.isArray(test));
-    EQ (test.join(','), '104,101,108,108,111' );
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '68656c6c6f' );
   }),
   it('should duck-type a Buffer', function() {
     var test = conv(new Buffer([104,101,108,108,111]));
-    T (Array.isArray(test));
-    EQ (test.join(','), '104,101,108,108,111' );
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '68656c6c6f' );
   }),
   it('should duck-type a Number', function() {
     var test = conv(48879);
-    T (Array.isArray(test));
-    EQ (test.join(','), '190,239' );
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), 'beef' );
   }),
   it('should duck-type a 0x-prefixed hex string', function() {
     var test = conv('0x68656c6c6f');
-    T (Array.isArray(test));
-    EQ (test.join(','), '104,101,108,108,111' );
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '68656c6c6f' );
   }),
   it('should not duck-type a 0x-prefixed hex string, if input format set', function() {
     var test = conv('0x68656c6c6f', {in: 'binary'});
-    T (Array.isArray(test));
-    EQ (test.join(','), '48,120,54,56,54,53,54,99,54,99,54,102' );
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '307836383635366336633666' );
   }),
   describe('> should properly convert byte array...', function() {
   var input = [104,101,108,108,111];
