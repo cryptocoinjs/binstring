@@ -39,12 +39,12 @@ This library exposes a single function that takes a data parameter and an option
 * `bytes`: Byte array; an array of numbers, each representing one byte of data
 * `buffer`: A Node.js native Buffer object
 
-The default encoding for `options.out` is a byte array (`bytes`). The input format is duck-typed if it's an Array (`bytes`) or Buffer (`buffer`) or Number object. If it's a string, it's interpreted as `binary` unless it's prefixed by `0x` (then it's `hex`). If `options.in` is set, it overrides the automatic duck-typing of the input variable.
+The default encoding for `options.out` is a buffer (`buffer`). The input format is duck-typed if it's an Array (`bytes`) or Buffer (`buffer`) or Number object. If it's a string, it's interpreted as `binary` unless it's prefixed by `0x` (then it's `hex`). If `options.in` is set, it overrides the automatic duck-typing of the input variable.
 
 ```js
 var conv = require('binstring');
 
-console.dir(conv('hello', { in:'binary' })); // No output encoding specified, defaults to byte array; output: [104,101,108,108,111]
+console.dir(conv('hello', { in:'binary' })); // No output encoding specified, defaults to Buffer; output: Buffer([104,101,108,108,111])
 console.dir(conv([104,101,108,108,111], { out:'hex' })); // No input encoding specified, auto-detected as Byte Array; output: 68656c6c6f
 console.dir(conv('hello', { in:'binary', out:'hex' })); // output: 68656c6c6f
 ```
