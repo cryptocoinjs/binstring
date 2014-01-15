@@ -5,30 +5,6 @@ JavaScript component to convert to/from strings and byte arrays.
 AMD/CommonJS compatible.
 
 
-## Install
-
-### Node.js/Browserify
-
-    npm install --save binstring
-
-
-### Component
-
-    component install cryptocoin/binstring
-
-
-### Bower
-
-    bower install binstring
-
-
-### Script
-
-```html
-<script src="/path/to/binstring.js"></script>
-```
-
-
 ## Usage
 
 This library exposes a single function that takes a data parameter and an options object. Set `options.in` and `options.out` to the format of the input and desired output. Possible values include:
