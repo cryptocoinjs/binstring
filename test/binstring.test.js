@@ -33,8 +33,9 @@ describe('+ convert(data)', function() {
     T (Buffer.isBuffer(test));
     EQ (test.toString('hex'), '307836383635366336633666' );
   }),
-  describe('> should properly convert byte array...', function() {
-  var input = [104,101,108,108,111];
+  
+  it('> should properly convert byte array...', function() {
+    var input = [104,101,108,108,111];
     it('...to hex', function() {
         EQ (conv(input, { in:'bytes', out:'hex' }), '68656c6c6f' );
     }),
@@ -47,7 +48,8 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  describe('> should properly convert hex string...', function() {
+  
+  it('> should properly convert hex string...', function() {
     var input = '68656c6c6f';
     it('...to binary', function() {
         EQ (conv(input, { in:'hex', out:'binary' }), 'hello' );
@@ -63,7 +65,8 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  describe('> should properly convert binary string...', function() {
+  
+  it('> should properly convert binary string...', function() {
     var input = 'hello';
     it('...to hex', function() {
       EQ (conv(input, { in:'binary', out:'hex' }), '68656c6c6f' );
@@ -79,7 +82,8 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  describe('> should properly convert utf8 string...', function() {
+  
+  it('> should properly convert utf8 string...', function() {
     var input = 'R\u00e9sum\u00e9';
     it('...to hex', function() {
       EQ (conv(input, { in:'utf8', out:'hex' }), '52c3a973756dc3a9' );
@@ -98,7 +102,8 @@ describe('+ convert(data)', function() {
       EQ (test.toString('hex'), '52c3a973756dc3a9');
     })
   }),
-  describe('> should properly convert Buffer...', function() {
+  
+  it('> should properly convert Buffer...', function() {
     var input = new Buffer([104,101,108,108,111]);
     it('...to hex', function() {
       EQ (conv(input, { in:'buffer', out:'hex' }), '68656c6c6f' );
@@ -113,3 +118,4 @@ describe('+ convert(data)', function() {
     })
   })
 })
+
