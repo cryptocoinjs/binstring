@@ -1,3 +1,9 @@
+0.2.1 / 2014-04-13
+------------------
+* add base64 output, #5
+* npmignore the references, #4 
+
+
 0.2.0 / 2014-01-15
 ------------------
 * Update internal processing to use Buffers by default

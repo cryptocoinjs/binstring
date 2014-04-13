@@ -1,6 +1,6 @@
 {
   "name": "binstring",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Convert binary data to and from various string representations",
   "keywords": [
     "string",
@@ -11,7 +11,7 @@
   ],
   "devDependencies": {
     "mocha": "1.*",
-    "terst": "0.0.1"
+    "terst": "0.1.0"
   },
   "repository": {
     "url": "https://github.com/cryptocoinjs/binstring",
