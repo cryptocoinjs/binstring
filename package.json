@@ -17,5 +17,8 @@
     "url": "https://github.com/cryptocoinjs/binstring",
     "type": "git"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "main": "./lib/binstring.js"
 }

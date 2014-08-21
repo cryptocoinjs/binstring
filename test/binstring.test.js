@@ -13,13 +13,34 @@ describe('+ convert(data)', function() {
     T (Buffer.isBuffer(test));
     EQ (test.toString('hex'), '68656c6c6f' );
   }),
+  it('should duck-type an array-like object', function() {
+    var test = conv(new Uint8Array([104,101,108,108,111]));
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '68656c6c6f' );
+  }),
   it('should duck-type a Buffer', function() {
     var test = conv(new Buffer([104,101,108,108,111]));
     T (Buffer.isBuffer(test));
     EQ (test.toString('hex'), '68656c6c6f' );
   }),
+  it('should duck-type an object using toString()', function() {
+    var input = {
+      a: 10,
+      toString: function() {
+        return this.a+5+'';
+      }
+    };
+    var test = conv(input);
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), '0f' );
+  }),
   it('should duck-type a Number', function() {
     var test = conv(48879);
+    T (Buffer.isBuffer(test));
+    EQ (test.toString('hex'), 'beef' );
+  }),
+  it('should duck-type a number stored as a string', function() {
+    var test = conv('48879');
     T (Buffer.isBuffer(test));
     EQ (test.toString('hex'), 'beef' );
   }),
@@ -33,7 +54,7 @@ describe('+ convert(data)', function() {
     T (Buffer.isBuffer(test));
     EQ (test.toString('hex'), '307836383635366336633666' );
   }),
-  
+
   it('> should properly convert byte array...', function() {
     var input = [104,101,108,108,111];
     it('...to hex', function() {
@@ -48,7 +69,7 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  
+
   it('> should properly convert hex string...', function() {
     var input = '68656c6c6f';
     it('...to binary', function() {
@@ -65,7 +86,7 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  
+
   it('> should properly convert binary string...', function() {
     var input = 'hello';
     it('...to hex', function() {
@@ -82,7 +103,7 @@ describe('+ convert(data)', function() {
       EQ (test.toString('binary'), 'hello');
     })
   }),
-  
+
   it('> should properly convert utf8 string...', function() {
     var input = 'R\u00e9sum\u00e9';
     it('...to hex', function() {
@@ -102,7 +123,7 @@ describe('+ convert(data)', function() {
       EQ (test.toString('hex'), '52c3a973756dc3a9');
     })
   }),
-  
+
   it('> should properly convert Buffer...', function() {
     var input = new Buffer([104,101,108,108,111]);
     it('...to hex', function() {
@@ -118,4 +139,3 @@ describe('+ convert(data)', function() {
     })
   })
 })
-
