@@ -14,6 +14,7 @@ This library exposes a single function that takes a data parameter and an option
 * `utf8`: Binary-encoded string (UTF8-encoded)
 * `bytes`: Byte array; an array of numbers, each representing one byte of data
 * `buffer`: A Node.js native Buffer object
+* `base64`: A base-64-encoded string (must explicitly set this as input type if used, since it can't be reliabliy duck-typed)
 
 The default encoding for `options.out` is a buffer (`buffer`). The input format is duck-typed if it's an Array (`bytes`) or Buffer (`buffer`) or Number object. If it's a string, it's interpreted as `binary` unless it's prefixed by `0x` (then it's `hex`). If `options.in` is set, it overrides the automatic duck-typing of the input variable.
 
