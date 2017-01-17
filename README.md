@@ -1,3 +1,5 @@
+## DEPRECATED. Use [Buffer](https://nodejs.org/api/buffer.html) instead.
+
 # BinString
 
 JavaScript component to convert to/from strings and byte arrays.
